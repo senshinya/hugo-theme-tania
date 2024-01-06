@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="nav-wrapper">
+    <a aria-current="page" class="item brand" href="/">
+      <span>{{ .Site.Title }}</span>
+    </a>
+    <nav>
+      {{ range .Site.Menus.header }}
+      <div class="nav-item-outer">
+        <a href="{{ .URL | relURL }}" {{ if eq .URL $.RelPermalink }} aria-current="page" {{ end }} class="item {{ .Name | strings.ToLower }}{{ if eq .URL $.RelPermalink }} active {{ end }}">
+          <span>{{ .Name }}</span>
+        </a>
+      </div>
+      {{ end }}
+    </nav>
+  </div>
+
+  <div class="theme-toggle">
+  </div>
+
+  <style>
+    {{ range .Site.Menus.header }}
+    .navigation a.item.{{ .Name | strings.ToLower }}:hover,
+    .navigation a.item.{{ .Name | strings.ToLower }}.active {
+        border-bottom-color: var(--rainbow-{{ math.Mod .Weight 5 | math.Add 1 }});
+    }
+    {{ end }}
+  </style>
+</div>

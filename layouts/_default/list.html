@@ -1,0 +1,69 @@
+{{ define "main" }}
+{{ $pages := .Pages }}
+{{ $title := .Title}}
+{{ $linkTitle := .LinkTitle }}
+{{ $categoryPage := hasPrefix .RelPermalink "/categories" }}
+{{ $tagPage := hasPrefix .RelPermalink "/tags" }}
+<div>
+  <section class="container markdown-content">
+    <div class="grid">
+      <div class="article-content">
+        <header class="hero">
+          {{ if or $categoryPage $tagPage}}
+          <div class="sub-title">
+            <span class="highlight">{{ $pages.Len }}</span>
+            posts {{ if $categoryPage }}categorized{{ end }}{{ if $tagPage }}tagged{{ end }} as:
+            <h1>{{ .LinkTitle }}</h1>
+          </div>
+          {{ else }}
+          <h1>Writing</h1>
+          {{ end }}
+        </header>
+        {{ range $pages.GroupByDate "2006" }}
+        <section class="segment">
+          <h2 class="year">
+            {{ .Key }}
+          </h2>
+          <div class="posts">
+            {{ range .Pages }}
+            <a class="post" href="{{ .RelPermalink }}">
+              <h3>{{ .Title }}</h3>
+              <time>{{ .PublishDate | time.Format ":date_medium" }}</time>
+            </a>
+            {{ end }}
+          </div>
+        </section>
+        {{ end }}
+      </div>
+      <div class="sidebar-content">
+        <aside class="post-sidebar">
+          <div class="post-sidebar-card">
+            <h2>Categories</h2>
+            <div class="list">
+              {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+              {{ $cnt := .Count }}
+              {{ with $.Site.GetPage (printf "/categories/%s" $name) }}
+              <a class="category {{ if and ($categoryPage) (compare.Eq .LinkTitle $linkTitle)  }}active{{ end }}" href="{{ .RelPermalink }}">
+                <div class="name">{{ .Title }}</div>
+                <div class="count">{{ $cnt }}</div>
+              </a>
+              {{ end }}
+              {{ end }}
+            </div>
+          </div>
+          <div class="post-sidebar-card">
+            <h2>Tags</h2>
+            <div class="tags">
+              {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+              {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+              <a class="tag {{ if and ($tagPage) (compare.Eq .LinkTitle $linkTitle)  }}active{{ end }}" href="{{ .RelPermalink }}">{{ .Title }}</a>
+              {{ end }}
+              {{ end }}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+{{ end }}

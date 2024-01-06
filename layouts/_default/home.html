@@ -1,0 +1,85 @@
+{{ define "main" }}
+<div>
+  <div class="container">
+    <div class="hero-wrapper">
+      <header class="hero index">
+        <h1>Hey, Shinyaです！</h1>
+        <p class="hero-description small width">
+          Welcome to my digital garden. 🌱
+          <br>
+          <br>
+          I'm a software developer in Mainland China. I make open-source projects and write about code and life. I like coding, reading, and gaming.
+        </p>
+      </header>
+      <div class="decoration">
+        <img src="/header.png" class="image hero-image">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="segment first">
+      <h2 class="home-heading">
+        <div>
+          <div class="title">Latest Posts</div>
+        </div>
+        <a class="button" href="/posts">View all</a>
+      </h2>
+      <div class="posts newspaper">
+        {{ range ( where site.RegularPages "Section" "posts" | first 7 ) }}
+          <a class="post" href="{{ .RelPermalink }}">
+            <h3>{{ .Title }}</h3>
+            <time>{{ .PublishDate | time.Format ":date_medium" }}</time>
+          </a>
+        {{ end }}
+      </div>
+    </section>
+
+    <section class="segment large">
+      <h2 class="home-heading">
+        <div>
+          <div class="title">Projects</div>
+        </div>
+        <a class="button" href="/projects">View all</a>
+      </h2>
+      <div class="post-preview">
+        {{ range ( where site.RegularPages "Section" "projects" | first 6 ) }}
+          <div class="anchored card">
+            <div>
+              <time>{{ .PublishDate | time.Format "2006"}}</time>
+              <a class="card-header" href="{{ .Params.source }}" target="_blank" rel="noreferrer">
+                {{ .Title }}
+              </a>
+              <p>{{ .Description }}</p>
+            </div>
+            <div class="anchored links">
+              {{ if .Params.article }}
+              <a class="button" href="{{ .Params.article }}">Article</a>
+              {{ end }}
+              {{ if .Params.demo }}
+              <a class="button" href="{{ .Params.demo }}" target="_blank">Demo</a>
+              {{ end }}
+              <a class="button" href="{{ .Params.source }}" target="_blank">Source</a>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <section class="segment large">
+      <h2 class="home-heading">
+        <div>
+          <div class="title">Subscribe</div>
+        </div>
+      </h2>
+      <p>
+        Use the old-fashion way to keep you updated.
+        <br />
+        No spam, no registration, offline-available, and using your favourite RSS client!</p>
+      <p>
+        <a href="/index.xml" target="_blank" class="button large highlighted">Subscribe to the RSS</a>
+      </p>
+    </section>
+  </div>
+</div>
+{{ end }}

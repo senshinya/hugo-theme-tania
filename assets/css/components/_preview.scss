@@ -1,0 +1,94 @@
+/* Preview */
+
+.highlight-preview {
+    display: grid;
+    gap: 0.5rem;
+}
+
+@media screen and (min-width: 700px) {
+    .highlight-preview {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 1060px) {
+    .highlight-preview {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.project-preview,
+.image-preview {
+    display: grid;
+    gap: 1rem;
+}
+
+.image-preview {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.image-thumbnail {
+    height: 150px;
+}
+
+@media screen and (min-width: 700px) {
+    .project-preview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .image-preview {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .image-thumbnail {
+        height: 220px;
+    }
+}
+
+@media screen and (min-width: 1060px) {
+    .project-preview {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .image-preview {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .image-thumbnail {
+        height: 250px;
+    }
+}
+
+.post-preview .card p {
+    margin-bottom: 1rem;
+}
+
+.project-preview .card time {
+    color: var(--project-time-color);
+}
+
+.post-preview>div {
+    flex: 1;
+}
+
+.post-preview {
+    display: grid;
+    gap: 1rem;
+}
+
+@media screen and (min-width: 700px) {
+    .post-preview {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+
+.post-preview>div {
+    flex: 1;
+}
+
+.post-preview a.button {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.6rem;
+}
