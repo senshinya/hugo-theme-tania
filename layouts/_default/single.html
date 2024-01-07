@@ -1,9 +1,79 @@
 {{ define "main" }}
-  <!-- <h1>{{ .Title }}</h1> -->
-
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-
-  {{ .Content }}
+<div>
+  <div class="container">
+    <div class="grid">
+      <div class="article-content">
+        <div class="post-header medium width">
+          <h1>{{ .Title }}</h1>
+        </div>
+        <section class="segment small">
+          <div class="post-content">
+            {{ .Content }}
+          </div>
+        </section>
+        <section class="segment">
+          <div class="card single">
+            <h3>Subscribe</h3>
+            <p class="text-medium">
+              If you liked this post, stay tuned for more easily and gracefully! With the old-fashion way.
+            </p>
+            <a href="/index.xml" target="_blank" class="button highlighted">Subscribe to RSS</a>
+          </div>
+        </section>
+        {{ if or (not (isset .Params "comments")) (eq .Params.comments "true")}} 
+        <section class="segment comments">
+          <h3>Comments</h3>
+          <div>
+            {{ partial (printf "comments/%s" .Site.Params.comments.provider) . }}
+          </div>
+        </section>
+        {{ end }}
+      </div>
+      <aside class="post-sidebar">
+        <div class="post-sidebar-card">
+          <h2>Post Details</h2>
+          <ul>
+            <li>
+              Published {{ .PublishDate | time.Format ":date_medium" }}
+            </li>
+          </ul>
+          <div>
+            <h2>Category</h2>
+            <ul>
+              {{ range .GetTerms "categories"}}
+              <li>
+                <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          <h2>Tags</h2>
+          <div class="tags">
+            {{ range .GetTerms "tags"}}
+            <a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            {{ end }}
+          </div>
+        </div>
+        <div class="post-sidebar-card">
+          <h2>About me</h2>
+          <img src="/header.png" class="sidebar-avatar">
+          <p>
+            Hello and thanks for visiting! My name is
+            <a href="/about">Shinya</a>, and this is my website and digital garden. 🌱
+          </p>
+          <p>
+            I'm a software developer in Mainland China. I make open-source projects and write about code and life. I like coding, reading, and gaming.
+          </p>
+        </div>
+        <div class="post-sidebar-card">
+          <h2>Subscribe</h2>
+          <p>Stay tuned for more easily and gracefully! With the old-fashion way.</p>
+          <p>
+            <a href="/index.xml" target="_blank" class="button highlighted">Subscribe to RSS</a>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
 {{ end }}

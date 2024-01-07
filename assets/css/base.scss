@@ -199,16 +199,6 @@ main {
 
 /* Blockquote */
 
-blockquote {
-    margin: 2rem 0;
-    border: 1px solid var(--indigo-light);
-    border-left: 6px solid var(--indigo-light);
-    margin-left: 0;
-    padding: 1.5rem;
-    background: var(--blockquote-background);
-    border-radius: var(--border-radius);
-}
-
 blockquote p {
     font-size: 1rem;
     line-height: 1.6;
@@ -229,7 +219,9 @@ blockquote strong {
     font-weight: 700;
 }
 
-blockquote.quotation {
+blockquote {
+    margin: 2rem 0;
+    margin-left: 0;
     background: transparent;
     border: none;
     border-left: 12px solid var(--border-color);
@@ -241,7 +233,7 @@ blockquote.quotation {
     color: var(--font-color-base);
 }
 
-blockquote.quotation cite {
+blockquote cite {
     margin-top: 0.5rem;
     font-style: normal;
     text-transform: uppercase;

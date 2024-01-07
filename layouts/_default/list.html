@@ -11,7 +11,7 @@
         <header class="hero">
           {{ if or $categoryPage $tagPage}}
           <div class="sub-title">
-            <span class="highlight">{{ $pages.Len }}</span>
+            <span class="highlight-text">{{ $pages.Len }}</span>
             posts {{ if $categoryPage }}categorized{{ end }}{{ if $tagPage }}tagged{{ end }} as:
             <h1>{{ .LinkTitle }}</h1>
           </div>

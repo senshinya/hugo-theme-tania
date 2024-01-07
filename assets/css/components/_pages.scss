@@ -1,0 +1,22 @@
+/* Pages */
+
+.post-content a {
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+}
+
+.post-content a:hover {
+    background: var(--link);
+    color: var(--link-hover-color);
+    text-decoration: none;
+}
+
+a.anchor,
+a.anchor:hover {
+    color: var(--link);
+    background: transparent !important;
+}
+
+a.anchor svg {
+    fill: var(--link);
+}

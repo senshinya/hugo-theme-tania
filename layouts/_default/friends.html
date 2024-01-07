@@ -1,0 +1,26 @@
+{{ define "main" }}
+<div>
+  <div class="container">
+    <header class="hero">
+      <h1>Friends</h1>
+    </header>
+  </div>
+  <section class="segment">
+    <div class="container">
+      {{ range ( where site.RegularPages "Section" "friends" ) }}
+      <a href="{{ .Params.friendUrl }}" target="_blank">
+        <div class="frienddiv">
+          <div class="frienddivleft">
+            <img class="myfriend" src={{ .Params.logo }} />
+          </div>
+          <div class="frienddivright">
+            <div class="friendname">{{ .Title }}</div>
+            <div class="friendinfo">{{ .Description }}</div>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+</div>
+{{ end }}

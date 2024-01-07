@@ -1,9 +1,35 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-
-  {{ .Content }}
+<div>
+  <div class="container">
+    <header class="hero">
+      <h1>Projects</h1>
+    </header>
+  </div>
+  <section class="segment">
+    <div class="container">
+      <div class="project-preview">
+        {{ range ( where site.RegularPages "Section" "projects" ) }}
+        <div class="card anchored large">
+          <div>
+            <time>{{ .PublishDate | time.Format "2006"}}</time>
+            <a class="card-header" href="{{ .Params.source }}" target="_blank" rel="noreferrer">
+              {{ .Title }}
+            </a>
+            <p>{{ .Description }}</p>
+          </div>
+          <div class="anchored links">
+            {{ if .Params.article }}
+            <a class="button" href="{{ .Params.article }}">Article</a>
+            {{ end }}
+            {{ if .Params.demo }}
+            <a class="button" href="{{ .Params.demo }}" target="_blank">Demo</a>
+            {{ end }}
+            <a class="button" href="{{ .Params.source }}" target="_blank">Source</a>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+</div>
 {{ end }}
