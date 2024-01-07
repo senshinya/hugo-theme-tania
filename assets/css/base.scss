@@ -125,6 +125,8 @@ html {
     font-size: 16px;
     font-weight: normal;
     font-kerning: normal;
+    overflow: scroll;
+    overflow-wrap: anywhere;
 }
 
 body {
@@ -536,4 +538,15 @@ a.button:hover {
 
 main {
     flex: 1;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: 2px;
 }
