@@ -126,7 +126,8 @@ html {
     font-weight: normal;
     font-kerning: normal;
     overflow: scroll;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+    word-break: break-all;
 }
 
 body {
