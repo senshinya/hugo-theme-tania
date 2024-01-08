@@ -6,7 +6,7 @@
     <nav>
       {{ range .Site.Menus.header }}
       <div class="nav-item-outer">
-        <a href="{{ .URL | relURL }}" {{ if eq .URL $.RelPermalink }} aria-current="page" {{ end }} class="item {{ .Name | strings.ToLower }}{{ if eq .URL $.RelPermalink }} active {{ end }}">
+        <a href="{{ .URL | relURL }}" {{ if eq .URL $.RelPermalink }} aria-current="page" {{ end }} class="item {{ .Name | strings.ToLower }}{{ if eq .URL $.RelPermalink }} active {{ end }}{{ if .Params.mobile }} mobile-only {{ end }}">
           <span>{{ .Name }}</span>
         </a>
       </div>
