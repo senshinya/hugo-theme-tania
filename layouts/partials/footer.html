@@ -5,4 +5,7 @@
     <nav>
         <a href="https://icp.gov.moe/?keyword=20248008" target="_blank">萌ICP备20248008号</a>
     </nav>
+    {{- $opts := dict "minify" hugo.IsProduction -}}
+    {{ $features := resources.Get "ts/feature.ts" | js.Build $opts | fingerprint }}
+    <script defer src="{{ $features.RelPermalink }}"></script>
 </section>

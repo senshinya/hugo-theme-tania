@@ -3,6 +3,7 @@
 <head>
   {{ partial "head.html" . }}
 </head>
+{{ partialCached "colorScheme" . }}
 <body>
   <section class="navigation">
     {{ partial "navigation.html" . }}

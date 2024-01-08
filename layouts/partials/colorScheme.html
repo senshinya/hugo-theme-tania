@@ -1,0 +1,47 @@
+<script>
+    (function () {
+        const colorSchemeKey = 'ThemeColorScheme';
+        if (!localStorage.getItem(colorSchemeKey)) {
+            localStorage.setItem(colorSchemeKey, "auto");
+        }
+    })();
+</script>
+
+<script>
+    (function () {
+        const colorSchemeKey = 'ThemeColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            /**
+             * Enable dark mode if:
+             * 1. If dark mode is set already (in local storage)
+             * 2. Auto mode & prefere color scheme is dark
+             */
+            document.documentElement.dataset.userColorScheme = 'dark';
+        } else {
+            document.documentElement.dataset.userColorScheme = 'light';
+        }
+    })();
+</script>
+
+<script>
+    function setHighlightTheme(theme) {
+        var ele = document.getElementById('highlight-style')
+        if (theme === 'light') {
+            ele.setAttribute('href', '/highlight-light.css'); 
+        }
+        if (theme === 'dark') {
+            ele.setAttribute('href', '/highlight-dark.css'); 
+        }
+    }
+
+    addEventListener('message', event => {
+        setHighlightTheme(document.documentElement.dataset.userColorScheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setHighlightTheme(e.detail)
+    })
+</script>
