@@ -5,4 +5,3 @@
 {{ $style := resources.Get "css/main.scss" | toCSS | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 <link rel="stylesheet" id="highlight-style">
-{{ partialCached "head/js.html" . }}
