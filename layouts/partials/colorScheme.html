@@ -43,11 +43,11 @@
 
     addEventListener('message', event => {
         setHighlightTheme(document.documentElement.dataset.userColorScheme)
-        setMetaTheme(document.documentElement.dataset.userColorScheme)
+        setMetaTheme(document.documentElement.dataset.userColorScheme === 'light' ? '#eee' : '#181818')
     });
 
     window.addEventListener('onColorSchemeChange', (e) => {
         setHighlightTheme(e.detail)
-        setMetaTheme(e.detail)
+        setMetaTheme(e.detail === 'light' ? '#eee' : '#181818')
     })
 </script>
