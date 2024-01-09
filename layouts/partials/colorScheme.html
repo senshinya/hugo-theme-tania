@@ -37,11 +37,17 @@
         }
     }
 
+    function setMetaTheme(theme) {
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme)
+    }
+
     addEventListener('message', event => {
         setHighlightTheme(document.documentElement.dataset.userColorScheme)
+        setMetaTheme(document.documentElement.dataset.userColorScheme)
     });
 
     window.addEventListener('onColorSchemeChange', (e) => {
         setHighlightTheme(e.detail)
+        setMetaTheme(e.detail)
     })
 </script>
